@@ -1097,7 +1097,7 @@ ul.social li a.fa-google-plus:hover {
 
 #main {
     position: relative;
-    background: #f7f7f7 url("images/bg02.png");
+    background: #f7f7f7;
     padding: 4em 0 4em 0;
 }
 
@@ -1137,7 +1137,7 @@ small {
 #footer {
     position: relative;
     color: #858484;
-    padding: 4em 0;
+    padding: 10px 0;
 }
 
 #footer:before {
@@ -1174,6 +1174,10 @@ small {
 #footer strong a,
 #footer b a {
     color: inherit;
+}
+
+strong {
+    color: white;
 }
 
 #footer ul.contact li,
@@ -1655,6 +1659,7 @@ small {
     /* Main */
     #main {
         padding: 20px 0;
+        background-color: white;
     }
     /* Footer */
     #footer {
@@ -1662,10 +1667,23 @@ small {
     }
 }
 
-.cards-list {
+h2 {
+    color: white;
+}
+
+#intro {
+    margin: 0 10px!important;
+}
+
+.colore {
+    color: black!important;
+}
+
+.carta-list {
     z-index: 0;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     flex-wrap: wrap;
 }
@@ -1722,20 +1740,3 @@ small {
         flex-direction: column;
     }
 }
-
-
-/*
-  .card {
-    margin: 30px auto;
-    width: 300px;
-    height: 300px;
-    border-radius: 40px;
-    background-image: url('https://i.redd.it/b3esnz5ra34y.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-repeat: no-repeat;
-  box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
-    transition: 0.4s;
-  }
-  */

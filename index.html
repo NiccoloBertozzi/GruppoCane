@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/main.css" />
+
 </head>
 
 <body class="homepage is-preload">
@@ -27,9 +28,9 @@
             <nav id="nav">
                 <ul>
                     <li class="current"><a href="index.html">Home</a></li>
-                    <li><a href="#intro">Table</a></li>
-                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                    <li><a href="no-sidebar.html">No Sidebar</a></li>
+                    <li><a href="#grafici">Grapichs</a></li>
+                    <li><a href="#main">Table</a></li>
+                    <li><a href="#form">Insert Data</a></li>
                 </ul>
             </nav>
 
@@ -42,82 +43,88 @@
             </section>
 
             <!-- Intro -->
-            <section id="intro" class="container">
+            <section id="intro">
+                <header class="major mt-5"id="grafici">
+                    <h2 class="colore">My Grapichs</h2>
+                </header>
                 <div class="row">
-                    <div class="carta-list">
-
+                    <div class="carta-list col-12">
                         <div class="carta uno col-4">
-                            <div class="card">
+                            <div class="card_image">
                                 <p id="cardp1">Card Title</p>
                             </div>
                         </div>
                         <div class="carta uno col-4">
-                            <div class="card">
+                            <div class="card_image">
                                 <p id="cartap2">Card Title</p>
                             </div>
                         </div>
                         <div class="carta uno col-4">
-                            <div class="card_image" src="images/grapichs.jpg"> </div <div class="card_title ">
+                            <div class="card_image"></div>
                             <p id="cardp3 ">Card Title</p>
                         </div>
                     </div>
                 </div>
-
             </section>
-
         </section>
 
         <!-- Main -->
-        <section id="main ">
-            <div class="container ">
-                <div class="row ">
-                    <div class="col-12 ">
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
 
                         <!-- Portfolio -->
-                        <section>
-                            <header class="major ">
-                                <h2>My Portfolio</h2>
+                        <section id="tabella">
+                            <header class="major">
+                                <h2 class="colore">My Table</h2>
                             </header>
-                            <div class="carta2 mb-3 ">
-                                <div class="carta2-header-tab carta2-header ">
-                                    <div class="carta2-header-title font-size-lg text-capitalize font-weight-normal ">
+                            <div class="carta2 mb-3">
+                                <div class="carta2-header-tab carta2-header">
+                                    <div class="carta2-header-title font-size-lg text-capitalize font-weight-normal">
                                         Easy Dynamic Tables
                                     </div>
                                 </div>
-                                <div class="carta2-body ">
-                                    <div id="example_wrapper " class="dataTables_wrapper dt-bootstrap4 ">
-                                        <div class="row ">
-                                            <div class="col-sm-12 col-md-6 ">
-                                                <div class="dataTables_length " id="example_length "><label>Show <select name="example_length " aria-controls="example " class="custom-select custom-select-sm form-control form-control-sm
-                                "><option value="10 ">10</option><option value="25 ">25</option><option value="50 ">50</option><option value="100 ">100</option></select> entries</label></div>
+                                <div class="carta2-body">
+                                    <div id="example_wrapper " class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <div class="dataTables_length" id="example_length">
+                                                    <label>Show <select name="example_length" aria-controls="example" class="custom-select custom-select-sm form-control form-control-sm">
+                                                        <option value="10 ">10</option>
+                                                        <option value="25 ">25</option>
+                                                        <option value="50 ">50</option>
+                                                        <option value="100 ">100</option>
+                                                    </select> entries</label>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-12 col-md-6 ">
-                                                <div id="example_filter " class="dataTables_filter "><label>Search:<input type="search " class="form-control form-control-sm " placeholder=" " aria-controls="example "></label></div>
+                                            <div class="col-sm-12 col-md-6">
+                                                <div id="example_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm " placeholder=" " aria-controls="example "></label></div>
                                             </div>
                                         </div>
-                                        <div class="row ">
-                                            <div class="col-sm-12 ">
-                                                <table style="width: 100%; " id="example " class="table table-hover table-striped table-bordered dataTable dtr-inline " role="grid " aria-describedby="example_info ">
+                                        <div class="row">
+                                            <div class=" col-sm-12">
+                                                <table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline " role="grid " aria-describedby="example_info ">
                                                     <thead>
-                                                        <tr role="row ">
-                                                            <th class="sorting_asc " tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 179.2px; " aria-label="Name: activate to sort column descending " aria-sort="ascending ">Name</th>
-                                                            <th class="sorting " tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 273.2px; " aria-label="Position: activate to sort column ascending ">Position</th>
-                                                            <th class="sorting " tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 132.2px; " aria-label="Office: activate to sort column ascending ">Office</th>
-                                                            <th class="sorting " tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 63.2px; " aria-label="Age: activate to sort column ascending ">Age</th>
-                                                            <th class="sorting " tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 124.2px; " aria-label="Start date: activate to sort column ascending ">Start date</th>
-                                                            <th class="sorting " tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 101.2px; " aria-label="Salary: activate to sort column ascending ">Salary</th>
+                                                        <tr role="row">
+                                                            <th class="sorting_asc" tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 179.2px; " aria-label="Name: activate to sort column descending " aria-sort="ascending ">Name</th>
+                                                            <th class="sorting" tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 273.2px; " aria-label="Position: activate to sort column ascending ">Position</th>
+                                                            <th class="sorting" tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 132.2px; " aria-label="Office: activate to sort column ascending ">Office</th>
+                                                            <th class="sorting" tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 63.2px; " aria-label="Age: activate to sort column ascending ">Age</th>
+                                                            <th class="sorting" tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 124.2px; " aria-label="Start date: activate to sort column ascending ">Start date</th>
+                                                            <th class="sorting" tabindex="0 " aria-controls="example " rowspan="1 " colspan="1 " style="width: 101.2px; " aria-label="Salary: activate to sort column ascending ">Salary</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr role="row " class="odd ">
-                                                            <td tabindex="0 " class="sorting_1 ">Airi Satou</td>
+                                                        <tr role="row" class="odd">
+                                                            <td tabindex="0" class="sorting_1">Airi Satou</td>
                                                             <td>Accountant</td>
                                                             <td>Tokyo</td>
                                                             <td>33</td>
                                                             <td>2008/11/28</td>
                                                             <td>$162,700</td>
                                                         </tr>
-                                                        <tr role="row " class="even ">
+                                                        <tr role="row" class="even">
                                                             <td class="sorting_1 " tabindex="0 ">Angelica Ramos</td>
                                                             <td>Chief Executive Officer (CEO)</td>
                                                             <td>London</td>
@@ -125,64 +132,64 @@
                                                             <td>2009/10/09</td>
                                                             <td>$1,200,000</td>
                                                         </tr>
-                                                        <tr role="row " class="odd ">
-                                                            <td tabindex="0 " class="sorting_1 ">Ashton Cox</td>
+                                                        <tr role="row" class="odd">
+                                                            <td tabindex="0 " class="sorting_1">Ashton Cox</td>
                                                             <td>Junior Technical Author</td>
                                                             <td>San Francisco</td>
                                                             <td>66</td>
                                                             <td>2009/01/12</td>
                                                             <td>$86,000</td>
                                                         </tr>
-                                                        <tr role="row " class="even ">
-                                                            <td class="sorting_1 " tabindex="0 ">Bradley Greer</td>
+                                                        <tr role="row" class="even">
+                                                            <td class="sorting_1" tabindex="0 ">Bradley Greer</td>
                                                             <td>Software Engineer</td>
                                                             <td>London</td>
                                                             <td>41</td>
                                                             <td>2012/10/13</td>
                                                             <td>$132,000</td>
                                                         </tr>
-                                                        <tr role="row " class="odd ">
-                                                            <td class="sorting_1 " tabindex="0 ">Brenden Wagner</td>
+                                                        <tr role="row" class="odd">
+                                                            <td class="sorting_1" tabindex="0 ">Brenden Wagner</td>
                                                             <td>Software Engineer</td>
                                                             <td>San Francisco</td>
                                                             <td>28</td>
                                                             <td>2011/06/07</td>
                                                             <td>$206,850</td>
                                                         </tr>
-                                                        <tr role="row " class="even ">
-                                                            <td tabindex="0 " class="sorting_1 ">Brielle Williamson</td>
+                                                        <tr role="row" class="even">
+                                                            <td tabindex="0" class="sorting_1">Brielle Williamson</td>
                                                             <td>Integration Specialist</td>
                                                             <td>New York</td>
                                                             <td>61</td>
                                                             <td>2012/12/02</td>
                                                             <td>$372,000</td>
                                                         </tr>
-                                                        <tr role="row " class="odd ">
-                                                            <td class="sorting_1 " tabindex="0 ">Bruno Nash</td>
+                                                        <tr role="row" class="odd">
+                                                            <td class="sorting_1" tabindex="0">Bruno Nash</td>
                                                             <td>Software Engineer</td>
                                                             <td>London</td>
                                                             <td>38</td>
                                                             <td>2011/05/03</td>
                                                             <td>$163,500</td>
                                                         </tr>
-                                                        <tr role="row " class="even ">
-                                                            <td class="sorting_1 " tabindex="0 ">Caesar Vance</td>
+                                                        <tr role="row" class="even">
+                                                            <td class="sorting_1" tabindex="0">Caesar Vance</td>
                                                             <td>Pre-Sales Support</td>
                                                             <td>New York</td>
                                                             <td>21</td>
                                                             <td>2011/12/12</td>
                                                             <td>$106,450</td>
                                                         </tr>
-                                                        <tr role="row " class="odd ">
-                                                            <td class="sorting_1 " tabindex="0 ">Cara Stevens</td>
+                                                        <tr role="row" class="odd">
+                                                            <td class="sorting_1" tabindex="0 ">Cara Stevens</td>
                                                             <td>Sales Assistant</td>
                                                             <td>New York</td>
                                                             <td>46</td>
                                                             <td>2011/12/06</td>
                                                             <td>$145,600</td>
                                                         </tr>
-                                                        <tr role="row " class="even ">
-                                                            <td tabindex="0 " class="sorting_1 ">Cedric Kelly</td>
+                                                        <tr role="row" class="even">
+                                                            <td tabindex="0 " class="sorting_1">Cedric Kelly</td>
                                                             <td>Senior Javascript Developer</td>
                                                             <td>Edinburgh</td>
                                                             <td>22</td>
@@ -203,21 +210,21 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="row ">
-                                            <div class="col-sm-12 col-md-5 ">
-                                                <div class="dataTables_info " id="example_info " role="status " aria-live="polite ">Showing 1 to 10 of 57 entries</div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_inf" id="example_info" role="status " aria-live="polite ">Showing 1 to 10 of 57 entries</div>
                                             </div>
-                                            <div class="col-sm-12 col-md-7 ">
-                                                <div class="dataTables_paginate paging_simple_numbers " id="example_paginate ">
-                                                    <ul class="pagination ">
-                                                        <li class="paginate_button page-item previous disabled " id="example_previous "><a href="# " aria-controls="example " data-dt-idx="0 " tabindex="0 " class="page-link ">Previous</a></li>
+                                            <div class="col-sm-12 col-md-7">
+                                                <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                                                    <ul class="pagination">
+                                                        <li class="paginate_button page-item previous disabled" id="example_previous"><a href="# " aria-controls="example " data-dt-idx="0 " tabindex="0 " class="page-link ">Previous</a></li>
                                                         <li class="paginate_button page-item active "><a href="# " aria-controls="example " data-dt-idx="1 " tabindex="0 " class="page-link ">1</a></li>
-                                                        <li class="paginate_button page-item "><a href="# " aria-controls="example " data-dt-idx="2 " tabindex="0 " class="page-link ">2</a></li>
-                                                        <li class="paginate_button page-item "><a href="# " aria-controls="example " data-dt-idx="3 " tabindex="0 " class="page-link ">3</a></li>
-                                                        <li class="paginate_button page-item "><a href="# " aria-controls="example " data-dt-idx="4 " tabindex="0 " class="page-link ">4</a></li>
-                                                        <li class="paginate_button page-item "><a href="# " aria-controls="example " data-dt-idx="5 " tabindex="0 " class="page-link ">5</a></li>
-                                                        <li class="paginate_button page-item "><a href="# " aria-controls="example " data-dt-idx="6 " tabindex="0 " class="page-link ">6</a></li>
-                                                        <li class="paginate_button page-item next " id="example_next "><a href="# " aria-controls="example " data-dt-idx="7 " tabindex="0 " class="page-link ">Next</a></li>
+                                                        <li class="paginate_button page-item"><a href="#" aria-controls="example " data-dt-idx="2 " tabindex="0 " class="page-link">2</a></li>
+                                                        <li class="paginate_button page-item"><a href="#" aria-controls="example " data-dt-idx="3 " tabindex="0 " class="page-link">3</a></li>
+                                                        <li class="paginate_button page-item"><a href="#" aria-controls="example " data-dt-idx="4 " tabindex="0 " class="page-link">4</a></li>
+                                                        <li class="paginate_button page-item"><a href="#" aria-controls="example " data-dt-idx="5 " tabindex="0 " class="page-link">5</a></li>
+                                                        <li class="paginate_button page-item"><a href="#" aria-controls="example " data-dt-idx="6 " tabindex="0 " class="page-link">6</a></li>
+                                                        <li class="paginate_button page-item next" id="example_next"><a href="# " aria-controls="example " data-dt-idx="7 " tabindex="0 " class="page-link">Next</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -228,76 +235,148 @@
                         </section>
 
                     </div>
-                    <div class="col-12 ">
-
-
+                    <div class="col-12">
+                        <!--FORM-->
+                        <header class="major" id="form">
+                            <h2 class="colore">Insert Date</h2>
+                        </header>
+                        <div id="forma">
+                            <form class="needs-validation" id="form1">
+                                <h2>Carta d'identità</h2>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control" id="nome" placeholder="Nome" required>
+                                        <div class="valid-tooltip">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="cognome">Cognome</label>
+                                        <input type="text" class="form-control" id="cognome" placeholder="Cognome" required>
+                                        <div class="valid-tooltip">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="data">Data di Nascita</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                            </div>
+                                            <input type="date" class="form-control" id="data" required>
+                                            <div class="invalid-tooltip">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="luogo">Luogo di Nascita</label>
+                                        <input type="text" class="form-control" id="luogo" placeholder="Luogo di Nascita" required>
+                                        <div class="invalid-tooltip">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="residenza">Residenza</label>
+                                        <input type="text" class="form-control" id="residenza" placeholder="Residenza" required>
+                                        <div class="invalid-tooltip">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="indirizzo">Indirizzo</label>
+                                        <input type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>
+                                        <div class="invalid-tooltip">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="statura">Statura</label>
+                                        <input type="text" class="form-control" id="statura" placeholder="Statura" required>
+                                        <div class="invalid-tooltip">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="provincia">Provincia</label>
+                                        <input type="text" class="form-control" id="provincia" placeholder="Provincia" required>
+                                        <div class="invalid-tooltip">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="regione">regione</label>
+                                        <input type="text" class="form-control" id="regione" placeholder="Regione" required>
+                                        <div class="invalid-tooltip">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" id="#submit1" type="button">Invia</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <section id="footer ">
-            <div class="container ">
-                <div class="row ">
-                    <div class="col-8 col-12-medium ">
+        <section id="footer">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="col-md-8 col-sm-12">
                         <section>
                             <header>
-                                <h2>Informazioni sulla PCTO</h2>
+                                <h2>Informazioni sul PCTO</h2>
                             </header>
-                            <ul class="dates ">
+                            <ul class="dates">
                                 <li>
-                                    <span class="date ">Feb<strong>10</strong></span>
+                                    <span class="date">Feb<strong>10</strong></span>
                                     <h3>Inizio della terza settimana di PCTO</h3>
                                     <p>Una settimana molto impegnativa sta aspettando i nostri alunni. Dovranno affrontare diverse prove a punti e nell'ultima parte della settimana, dovranno lavorare ad un grande progetto che si rivelerà comune.</p>
                                 </li>
                                 <li>
-                                    <span class="date ">Feb<strong>7</strong></span>
+                                    <span class="date">Feb<strong>7</strong></span>
                                     <h3>Termina la seconda settimana di PCTO</h3>
                                     <p>Sono stati svolti diversi esercizi che hanno permesso la creazione di una classifica.</p>
                                 </li>
                                 <li>
-                                    <span class="date ">Feb<strong>3</strong></span>
+                                    <span class="date">Feb<strong>3</strong></span>
                                     <h3>Inizio della seconda settimana</h3>
                                     <p>Durante questa settimana, i ragazzi verrano divisi in gruppi per lavorare insieme e gli verranno assegnati dei punti che influiranno sul voto finale!</p>
                                 </li>
                                 <li>
-                                    <span class="date ">Jan <strong>31</strong></span>
+                                    <span class="date">Jan <strong>31</strong></span>
                                     <h3>Termina la prima settimana di PCTO</h3>
                                     <p>Per i 12 ragazzi termina la prima delle quattro settimane di PCTO.</p>
                                 </li>
                                 <li>
-                                    <span class="date ">Jan <strong>27</strong></span>
+                                    <span class="date">Jan <strong>27</strong></span>
                                     <h3>Primo giorno di PCTO!</h3>
                                     <p>Inizia per 5 alunni della 4I e per 7 alunni della 4G il periodo di PCTO.</p>
                                 </li>
                             </ul>
                         </section>
                     </div>
-                    <div class="col-4 col-12-medium ">
+                    <div class="col-md-4 col-sm-12">
                         <section>
                             <header>
                                 <h2>Chi siamo?</h2>
                             </header>
-                            <a class="image featured "><img src="images/pic10.jpg " alt=" " /></a>
+                            <a class="image featured"><img src="https://slabitalia.it/wp-content/uploads/2019/04/maggioli.jpg" alt=" " /></a>
                             <p>
                                 Noi della Maggioli abbiamo i numeri, ma è perché da noi le persone contano e hanno sempre fatto la differenza. Siamo una Family Company fondata su pochi e semplici valori: cura delle persone, fiducia e rispetto reciproci, coerenza e collaborazione a tutti
                                 i livelli.
                             </p>
                             <footer>
-                                <ul class="actions ">
-                                    <li><a href="https://it.wikipedia.org/wiki/Gruppo_Maggioli " class="button ">Scopri di più</a></li>
+                                <ul class="actions">
+                                    <li><a href="https://it.wikipedia.org/wiki/Gruppo_Maggioli" class="button">Scopri di più</a></li>
                                 </ul>
                             </footer>
                         </section>
                     </div>
 
-                    <div class="col-4 col-6-medium col-12-small ">
+                    <div class="col-lg-4 col-6-md mt-5">
                         <section>
                             <header>
                                 <h2>Alunni della 4G</h2>
                             </header>
-                            <ul class="divided ">
+                            <ul class="divided">
                                 <li>Bertozzi Niccolo'</li>
                                 <li>Brocchi Matteo</li>
                                 <li>Moretti Riccardo</li>
@@ -308,12 +387,12 @@
                             </ul>
                         </section>
                     </div>
-                    <div class="col-4 col-6-medium col-12-small ">
+                    <div class="col-lg-4 col-6-md mt-5">
                         <section>
                             <header>
                                 <h2>Alunni della 4I</h2>
                             </header>
-                            <ul class="divided ">
+                            <ul class="divided">
                                 <li>Loris Ferola</li>
                                 <li>Emanuele D'Alessio</li>
                                 <li>Dall'Ara Andrea</li>
@@ -322,22 +401,22 @@
                             </ul>
                         </section>
                     </div>
-                    <div class="col-4 col-12-medium ">
+                    <div class="col-lg-4 col-md-12 mt-5">
                         <section>
                             <header>
                                 <h2>Gruppo Maggioli</h2>
                             </header>
-                            <ul class="social ">
-                                <li><a class="icon brands fa-facebook-f " href="https://www.facebook.com/GruppoMaggioli "><span class="label ">Facebook</span></a></li>
-                                <li><a class="icon brands fa-twitter " href="https://twitter.com/GruppoMaggioli "><span class="label ">Twitter</span></a></li>
-                                <li><a class="icon brands fa-chrome " href="https://www.maggioli.it "><span class="label ">Dribbble</span></a></li>
-                                <li><a class="icon brands fa-tumblr " href="https://tumblr.com "><span class="label ">Tumblr</span></a></li>
+                            <ul class="social">
+                                <li><a class="icon brands fa-facebook-f" href="https://www.facebook.com/GruppoMaggioli "><span class="label ">Facebook</span></a></li>
+                                <li><a class="icon brands fa-twitter" href="https://twitter.com/GruppoMaggioli "><span class="label ">Twitter</span></a></li>
+                                <li><a class="icon brands fa-chrome" href="https://www.maggioli.it"><span class="label ">Dribbble</span></a></li>
+                                <li><a class="icon brands fa-tumblr" href="https://tumblr.com"><span class="label ">Tumblr</span></a></li>
                                 <li>
-                                    <a class="icon brands fa-linkedin-in " href="https://it.linkedin.com/jobs/search?keywords=gruppo%20maggioli&location=Rimini%2C%20Emilia%20Romagna%2C%20Italia&trk=homepage-basic_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0
-                                "><span class="label ">LinkedIn</span></a>
+                                    <a class="icon brands fa-linkedin-in" href="https://it.linkedin.com/jobs/search?keywords=gruppo%20maggioli&location=Rimini%2C%20Emilia%20Romagna%2C%20Italia&trk=homepage-basic_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0
+                                            "><span class="label">LinkedIn</span></a>
                                 </li>
                             </ul>
-                            <ul class="contact ">
+                            <ul class="contact">
                                 <li>
                                     <h3>Indirizzo</h3>
                                     <p>
@@ -355,11 +434,11 @@
                             </ul>
                         </section>
                     </div>
-                    <div class="col-12 ">
+                    <div class="col-12 mt-5">
 
                         <!-- Copyright -->
-                        <div id="copyright ">
-                            <ul class="links ">
+                        <div id="copyright">
+                            <ul class="links">
                                 <li>Bertozzi Niccolo', Loris Ferola, Emanuele D'Alessio.</li>
                                 <li>Design: Gruppo Cane</li>
                             </ul>
