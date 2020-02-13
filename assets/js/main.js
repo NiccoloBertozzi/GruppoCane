@@ -3,7 +3,6 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-
 (function($) {
 
     var siteScroll = function() {
@@ -14,7 +13,7 @@
 
             if (st > 100) {
                 if (!title) {
-                    $("#nav>ul").prepend("<li class='titolo'>Economy</li>")
+                    $("#nav>ul").prepend("<li class='titolo'>Ufficio Anagrafe</li>")
                     title = true;
                 }
                 $('#nav').addClass('shrink');
@@ -29,8 +28,24 @@
         })
 
     };
-    siteScroll();
+    var persone =new Array();
+    $.ajax({
+        type:"GET",
+        contentType:"application/json",
+        url:"https://late-frost-5190.getsandbox.com/anagrafiche",
+        dataType:"json",
+        async:false,
+        success:function(data){
+            $.each(data,function(i,value){
+            persone.push(Object.assign({},value))
+        });
+    }
+    });
 
+    for(let i=0;i<10;i++){
+        $("#persone").append("<tr><th scope='row'>"+(i+1)+"</th><td>"+persone[i].nome+"</td><td>"+persone[i].cognome+"</td><td>"+persone[i].luogo_residenza.regione+"</td><td>"+persone[i].luogo_residenza.provincia+"</td><td>"+persone[i].luogo_residenza.comune+"</td><td>"+persone[i].anno+"</td></tr>")
+    }
+    siteScroll();
     var $window = $(window),
         $body = $('body');
 
