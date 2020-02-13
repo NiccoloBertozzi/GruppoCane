@@ -14,13 +14,13 @@
 
             if (st > 100) {
                 if (!title) {
-                    $("#nav>ul").prepend("<li> <a href = '#'> Analytics </a></li >")
+                    $("#nav>ul").prepend("<li class='titolo'>Economy</li>")
                     title = true;
                 }
                 $('#nav').addClass('shrink');
             } else {
                 if (title) {
-                    $("#nav>ul").removeChild("<li> <a href = '#'> Analytics </a></li >")
+                    $("#nav>ul").find(":first").remove();
                     title = false;
                 }
                 $('#nav').removeClass('shrink');

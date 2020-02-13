@@ -2154,8 +2154,29 @@ ul.social li a.fa-google-plus:hover {
     min-width: 12em;
 }
 
+.section-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(-45deg, #ff2002, #b80909);
+    display: flex;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    color: #000;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem!important;
+    margin-bottom: .5rem;
+    line-height: 1.2;
+}
+
 #intro footer {
     margin: 0;
+}
+
+.titolo {
+    font-family: "Roboto", sans-serif;
+    font-size: x-large;
+    color: black;
 }
 
 
