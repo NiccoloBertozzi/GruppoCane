@@ -27,7 +27,6 @@ $(function () {
             }
 
         })
-
     };
     var persone = new Array();
     $.ajax({

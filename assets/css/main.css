@@ -263,7 +263,6 @@ h3 {
 
 a {
     color: #0d7239;
-    text-decoration: underline;
 }
 
 a:hover {
@@ -1867,4 +1866,10 @@ h1 span {
 }
 .pagination li:hover{
     background-color: rgb(138, 138, 138);
+}
+#dropdownMenuButton{
+    background-color: #0d7239;
+    border-radius: 0;
+    color: #fff !important;
+    font-weight: 700;
 }
