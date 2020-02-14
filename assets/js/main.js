@@ -27,7 +27,6 @@ $(function () {
             }
 
         })
-
     };
     var persone = new Array();
     $.ajax({
@@ -58,7 +57,7 @@ $(function () {
             function StampaTabella(indicePartenza, numShow) {
                 AggiornaTabella();
                 for (let i = ((indicePartenza * 10) - 10); i < (numShow * indicePartenza); i++) {
-                    $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td></tr>")
+                    $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\"></i><i class=\"fas fa-edit edit rounded\"></i><i class=\"fas fa-church wedding rounded\"></i><i class=\"fas fa-home home rounded\"></i></td></tr>");
                 }
             }
             $("#shownumber").change(function () {
