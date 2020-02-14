@@ -1744,7 +1744,7 @@ h2 {
 }
 
 #arrivo {
-    background-color: #f7f7f7;
+    background-color: white;
 }
 
 @media (min-width: 576px) {
@@ -1865,6 +1865,6 @@ h1 span {
     vertical-align: top;
     border-top: 1px solid #dee2e6;
 }
-ul li:hover{
+.pagination li:hover{
     background-color: rgb(138, 138, 138);
 }

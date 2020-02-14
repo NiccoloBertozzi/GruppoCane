@@ -10,12 +10,15 @@
     <title>Ufficio Anagrafe</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="icon" href="https://cdn.imgbin.com/24/12/12/imgbin-computer-icons-chart-data-analysis-statistics-computer-4epEZTJE6EU8YSiAusC9B6U6T.jpg">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon"
+        href="https://cdn.imgbin.com/24/12/12/imgbin-computer-icons-chart-data-analysis-statistics-computer-4epEZTJE6EU8YSiAusC9B6U6T.jpg">
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/animation.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-
+    <script src="assets/js/jquery.min.js "></script>
+    <script src="assets/js/jquery.dropotron.min.js "></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body class="homepage is-preload">
@@ -27,7 +30,19 @@
             <nav id="nav">
                 <ul>
                     <li class="current" id="click1"><a href="#header">Home</a></li>
-                    <li id="click2"><a href="#grafici">Grafici</a></li>
+                    <li class="nav-item dropdown">
+                        <div class="dropdown show">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Dropdown link
+                            </a>
+                          
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </div>
+                    </li>
                     <li id="click3"><a href="#arrivo">Tabella</a></li>
                     <li id="click4"><a href="#formdati">Inserisci Dati</a></li>
                 </ul>
@@ -62,7 +77,7 @@
                 </div>
             </section>
         </section>
-        <div id="arrivo" style="height: 50px;"></div>
+        <div id="arrivo" style="height: 40px;"></div>
         <!-- Main -->
         <section id="main">
             <div class="container">
@@ -70,9 +85,24 @@
                     <div class="col-12">
                         <!-- Portfolio -->
                         <section id="tabella">
-                            <div class="row justify-content-center text-center mb-5">
+                            <div class="row justify-content-center text-center">
                                 <div class="col-md-5 aos-init aos-animate" data-aos="fade-up">
-                                    <h2 class="section-heading animated fadeIn delay-1s">Tabella </h2>
+                                    <h2 class="section-heading animated fadeIn delay-1s mb-0">Tabella </h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row m-3">
+                                    <div class="col-12">
+                                        <div class="dataTables_length" id="example_length"><label>Show</label><select
+                                                name="example_length" aria-controls="example"
+                                                class="custom-select custom-select-sm form-control form-control-sm"
+                                                id="shownumber">
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select></div>
+                                    </div>
                                 </div>
                             </div>
                             <table class="table table-hover shadow">
@@ -96,7 +126,7 @@
                 <div class="row justify-content-center mt-3">
                     <nav aria-label="...">
                         <ul class="pagination">
-                            
+
                         </ul>
                     </nav>
                 </div>
@@ -113,7 +143,7 @@
                         </div>
                         <div id="forma">
                             <form class="needs-validation" id="form1">
-                                <h2 class="colore">Carta d'identità</h2>
+                                <h2 class="colore">Certificato di residenza</h2>
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3">
                                         <label for="nome">Nome</label>
@@ -123,7 +153,8 @@
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="cognome">Cognome</label>
-                                        <input type="text" class="form-control" id="cognome" placeholder="Cognome" required>
+                                        <input type="text" class="form-control" id="cognome" placeholder="Cognome"
+                                            required>
                                         <div class="valid-tooltip">
                                         </div>
                                     </div>
@@ -137,19 +168,22 @@
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3">
                                         <label for="luogo">Luogo di Nascita</label>
-                                        <input type="text" class="form-control" id="luogo" placeholder="Luogo di Nascita" required>
+                                        <input type="text" class="form-control" id="luogo"
+                                            placeholder="Luogo di Nascita" required>
                                         <div class="invalid-tooltip">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="residenza">Residenza</label>
-                                        <input type="text" class="form-control" id="residenza" placeholder="Residenza" required>
+                                        <input type="text" class="form-control" id="residenza" placeholder="Residenza"
+                                            required>
                                         <div class="invalid-tooltip">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="indirizzo">Indirizzo</label>
-                                        <input type="text" class="form-control" id="indirizzo" placeholder="Indirizzo" required>
+                                        <input type="text" class="form-control" id="indirizzo" placeholder="Indirizzo"
+                                            required>
                                         <div class="invalid-tooltip">
                                         </div>
                                     </div>
@@ -157,19 +191,22 @@
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3">
                                         <label for="statura">Statura</label>
-                                        <input type="text" class="form-control" id="statura" placeholder="Statura" required>
+                                        <input type="text" class="form-control" id="statura" placeholder="Statura"
+                                            required>
                                         <div class="invalid-tooltip">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="provincia">Provincia</label>
-                                        <input type="text" class="form-control" id="provincia" placeholder="Provincia" required>
+                                        <input type="text" class="form-control" id="provincia" placeholder="Provincia"
+                                            required>
                                         <div class="invalid-tooltip">
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="regione">regione</label>
-                                        <input type="text" class="form-control" id="regione" placeholder="Regione" required>
+                                        <input type="text" class="form-control" id="regione" placeholder="Regione"
+                                            required>
                                         <div class="invalid-tooltip">
                                         </div>
                                     </div>
@@ -195,17 +232,21 @@
                                 <li>
                                     <span class="date">Feb<strong>10</strong></span>
                                     <h3>Inizio della terza settimana di PCTO</h3>
-                                    <p>Una settimana molto impegnativa sta aspettando i nostri alunni. Dovranno affrontare diverse prove a punti e nell'ultima parte della settimana, dovranno lavorare ad un grande progetto che si rivelerà comune.</p>
+                                    <p>Una settimana molto impegnativa sta aspettando i nostri alunni. Dovranno
+                                        affrontare diverse prove a punti e nell'ultima parte della settimana, dovranno
+                                        lavorare ad un grande progetto che si rivelerà comune.</p>
                                 </li>
                                 <li>
                                     <span class="date">Feb<strong>7</strong></span>
                                     <h3>Termina la seconda settimana di PCTO</h3>
-                                    <p>Sono stati svolti diversi esercizi che hanno permesso la creazione di una classifica.</p>
+                                    <p>Sono stati svolti diversi esercizi che hanno permesso la creazione di una
+                                        classifica.</p>
                                 </li>
                                 <li>
                                     <span class="date">Feb<strong>3</strong></span>
                                     <h3>Inizio della seconda settimana</h3>
-                                    <p>Durante questa settimana, i ragazzi verrano divisi in gruppi per lavorare insieme e gli verranno assegnati dei punti che influiranno sul voto finale!</p>
+                                    <p>Durante questa settimana, i ragazzi verrano divisi in gruppi per lavorare insieme
+                                        e gli verranno assegnati dei punti che influiranno sul voto finale!</p>
                                 </li>
                                 <li>
                                     <span class="date">Jan <strong>31</strong></span>
@@ -225,14 +266,18 @@
                             <header>
                                 <h2>Chi siamo?</h2>
                             </header>
-                            <a class="image featured"><img src="https://slabitalia.it/wp-content/uploads/2019/04/maggioli.jpg" alt=" " /></a>
+                            <a class="image featured"><img
+                                    src="https://slabitalia.it/wp-content/uploads/2019/04/maggioli.jpg" alt=" " /></a>
                             <p>
-                                Noi della Maggioli abbiamo i numeri, ma è perché da noi le persone contano e hanno sempre fatto la differenza. Siamo una Family Company fondata su pochi e semplici valori: cura delle persone, fiducia e rispetto reciproci, coerenza e collaborazione a tutti
+                                Noi della Maggioli abbiamo i numeri, ma è perché da noi le persone contano e hanno
+                                sempre fatto la differenza. Siamo una Family Company fondata su pochi e semplici valori:
+                                cura delle persone, fiducia e rispetto reciproci, coerenza e collaborazione a tutti
                                 i livelli.
                             </p>
                             <footer>
                                 <ul class="actions">
-                                    <li><a href="https://it.wikipedia.org/wiki/Gruppo_Maggioli" class="button" target="_blank">Scopri di più</a></li>
+                                    <li><a href="https://it.wikipedia.org/wiki/Gruppo_Maggioli" class="button"
+                                            target="_blank">Scopri di più</a></li>
                                 </ul>
                             </footer>
                         </section>
@@ -276,11 +321,17 @@
                             </header>
                             <div class="row">
                                 <ul class="social">
-                                    <li><a class="icon brands fa-facebook-f" href="https://www.facebook.com/GruppoMaggioli" target="blank" id="facebook"><span class="label">Facebook</span></a></li>
-                                    <li><a class="icon brands fa-twitter" href="https://twitter.com/GruppoMaggioli" target="blank"><span class="label">Twitter</span></a></li>
-                                    <li><a class="icon brands fa-chrome" href="https://www.maggioli.it" target="blank" id="web"><span class="label">Sito</span></a></li>
+                                    <li><a class="icon brands fa-facebook-f"
+                                            href="https://www.facebook.com/GruppoMaggioli" target="blank"
+                                            id="facebook"><span class="label">Facebook</span></a></li>
+                                    <li><a class="icon brands fa-twitter" href="https://twitter.com/GruppoMaggioli"
+                                            target="blank"><span class="label">Twitter</span></a></li>
+                                    <li><a class="icon brands fa-chrome" href="https://www.maggioli.it" target="blank"
+                                            id="web"><span class="label">Sito</span></a></li>
                                     <li>
-                                        <a class="icon brands fa-linkedin-in" id="in" href="https://it.linkedin.com/jobs/search?keywords=gruppo%20maggioli&location=Rimini%2C%20Emilia%20Romagna%2C%20Italia&trk=homepage-basic_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0"><span class="label">LinkedIn</span></a>
+                                        <a class="icon brands fa-linkedin-in" id="in"
+                                            href="https://it.linkedin.com/jobs/search?keywords=gruppo%20maggioli&location=Rimini%2C%20Emilia%20Romagna%2C%20Italia&trk=homepage-basic_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0"><span
+                                                class="label">LinkedIn</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -288,7 +339,7 @@
                                 <li>
                                     <h3>Indirizzo</h3>
                                     <p>
-                                        Via del Carpino,8<br/> 47822 Santarcangelo di Romagna (RN)-Italia
+                                        Via del Carpino,8<br /> 47822 Santarcangelo di Romagna (RN)-Italia
                                     </p>
                                 </li>
                                 <li>
@@ -321,8 +372,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js "></script>
-    <script src="assets/js/jquery.dropotron.min.js "></script>
+
     <script src="assets/js/browser.min.js "></script>
     <script src="assets/js/breakpoints.min.js "></script>
     <script src="assets/js/util.js "></script>

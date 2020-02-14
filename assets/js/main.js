@@ -3,7 +3,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-(function ($) {
+$(function () {
     var posizioneCorrente = 1;
     var numeropagine;
     var siteScroll = function () {
@@ -39,45 +39,49 @@
             $.each(data, function (i, value) {
                 persone.push(Object.assign({}, value))
             });
-            if (((persone.length) % 10) == 0) {
-                numeropagine = parseInt(persone.length / 10);
-                $(".pagination").append("<li class=\"page-item\" id=\"previous\"> <a class=\"page-link\" href=\"#arrivo\" tabindex=\"-1\"  style=\"text-decoration:none\"aria-disabled=\"true\">Previous</a> </li>");
+            CalcPag();
+            function CalcPag() {
+                $(".pagination").empty();
+                if (((persone.length) % $("#shownumber").val()) == 0) numeropagine = parseInt(persone.length / $("#shownumber").val());
+                else numeropagine = parseInt((persone.length / $("#shownumber").val()) + 1);
+                $(".pagination").append('<li class="page-item" id="previous"> <a class="page-link" href="#arrivo" tabindex="-1"  style="text-decoration:none"aria-disabled="true">Previous</a> </li>');
                 for (let i = 0; i < numeropagine; i++) {
-                    $(".pagination").append("<li class=\"page-item numeri\"><a class=\"page-link\ href=\"#\">" + (i + 1) + "</a></li>");
+                    $(".pagination").append('<li class="page-item numeri"><a class="page-link" style="text-decoration:none" href="#arrivo">' + (i + 1) + '</a></li>');
                 }
-                $(".pagination").append("<li class=\"page-item\" id=\"next\"> <a class=\"page-link\" href=\"#arrivo\" style=\"text-decoration:none\"tabindex=\"-1\" aria-disabled=\"true\">Next</a> </li>");
+                $(".pagination").append('<li class="page-item" id="next"> <a class="page-link" href="#arrivo" style="text-decoration:none"tabindex="-1" aria-disabled="true">Next</a> </li>');
+                StampaTabella(1, $("#shownumber").val());
             }
-            StampaTabella(1);
             function AggiornaTabella() {
                 $("#persone").empty();
             }
             /*STAMPA*/
-            function StampaTabella(indicePartenza) {
+            function StampaTabella(indicePartenza, numShow) {
                 AggiornaTabella();
-                for (let i = ((indicePartenza * 10) - 10); i < (indicePartenza * 10); i++) {
+                for (let i = ((indicePartenza * 10) - 10); i < (numShow * indicePartenza); i++) {
                     $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td></tr>")
                 }
             }
-            $(".numeri>.page-link").on("click", function () {
-                var testo = $(this).text();
-                posizioneCorrente = testo;
-                StampaTabella(testo);
+            $("#shownumber").change(function () {
+                CalcPag();
             });
             $("#previous").on("click", function () {
                 if (posizioneCorrente == 1) posizioneCorrente++;
                 posizioneCorrente--;
-                StampaTabella(posizioneCorrente);
+                StampaTabella(posizioneCorrente, $("#shownumber").val());
             });
             $("#next").on("click", function () {
                 if (posizioneCorrente == numeropagine) posizioneCorrente--;
                 posizioneCorrente++;
-                StampaTabella(posizioneCorrente);
+                StampaTabella(posizioneCorrente, $("#shownumber").val());
+            });
+            $(".numeri>.page-link").on("click", function () {
+                var testo = $(this).text();
+                posizioneCorrente = testo;
+                StampaTabella(testo, $("#shownumber").val());
             });
         }
     });
-
     siteScroll();
-
     var $window = $(window),
         $body = $('body');
 
@@ -135,4 +139,4 @@
 
 
 
-})(jQuery);
+});
