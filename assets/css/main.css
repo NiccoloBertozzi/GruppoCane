@@ -1,5 +1,6 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic");
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
 
 /*
 	Dopetrope by HTML5 UP
@@ -135,6 +136,7 @@ q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+    border: 1px solid #0d7239;
 }
 
 body {
@@ -239,6 +241,7 @@ h5,
 h6 {
     color: #252122;
     font-weight: 700;
+    font-size: 1.75em;
 }
 
 h1 a,
@@ -252,7 +255,7 @@ h6 a {
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 1.75em;
 }
 
 h3 {
@@ -260,11 +263,12 @@ h3 {
 }
 
 a {
-    color: #d52349;
+    color: #0d7239;
     text-decoration: underline;
 }
 
 a:hover {
+    color: #0d7239;
     text-decoration: none;
 }
 
@@ -404,7 +408,7 @@ button,
     text-decoration: none;
     cursor: pointer;
     border: 0;
-    background: #d52349;
+    background: #0d7239;
     color: #fff !important;
     font-weight: 700;
     outline: 0;
@@ -422,7 +426,7 @@ input[type="submit"]:hover,
 input[type="reset"]:hover,
 button:hover,
 .button:hover {
-    background: #e53359;
+    background: #0d7239
 }
 
 input[type="button"]:active,
@@ -430,7 +434,7 @@ input[type="submit"]:active,
 input[type="reset"]:active,
 button:active,
 .button:active {
-    background: #c51349;
+    background: #0d7239
 }
 
 input[type="button"].alt,
@@ -624,7 +628,7 @@ ul.dates .date {
     position: absolute;
     left: 0;
     top: 1.3em;
-    background-color: #d52349;
+    background-color: #0d7239;
     height: 3.5em;
     text-align: center;
     color: #fff;
@@ -637,7 +641,7 @@ ul.dates .date:after {
     position: absolute;
     bottom: 0;
     right: -1.2em;
-    border-left: solid 1.25em #d52349;
+    border-left: solid 1.25em #0d7239;
     border-top: solid 1.8em transparent;
     border-bottom: solid 1.8em transparent;
 }
@@ -722,11 +726,7 @@ ul.social li a:before {
     line-height: 1.5em;
 }
 
-ul.social li a.fa-facebook {
-    background: #3c5a98;
-}
-
-ul.social li a.fa-facebook:hover {
+#facebook:hover {
     background: #4c6aa8;
 }
 
@@ -738,35 +738,11 @@ ul.social li a.fa-twitter:hover {
     background: #3dbaf4;
 }
 
-ul.social li a.fa-dribbble {
-    background: #c4376b;
-}
-
-ul.social li a.fa-dribbble:hover {
-    background: #d4477b;
-}
-
-ul.social li a.fa-linkedin {
-    background: #006599;
-}
-
-ul.social li a.fa-linkedin:hover {
+#in:hover {
     background: #1075a9;
 }
 
-ul.social li a.fa-tumblr {
-    background: #2b4661;
-}
-
-ul.social li a.fa-tumblr:hover {
-    background: #3b5671;
-}
-
-ul.social li a.fa-google-plus {
-    background: #da2713;
-}
-
-ul.social li a.fa-google-plus:hover {
+#web:hover {
     background: #ea3723;
 }
 
@@ -811,7 +787,7 @@ ul.social li a.fa-google-plus:hover {
 .icon.featured {
     position: relative;
     display: inline-block;
-    background-color: #d52349;
+    background-color: #0d7239;
     width: 9em;
     padding: 1.75em 0 0.75em 0;
     margin: 0 0 4.5em 0;
@@ -829,7 +805,7 @@ ul.social li a.fa-google-plus:hover {
     position: absolute;
     bottom: -1.95em;
     left: 0;
-    border-top: solid 2em #d52349;
+    border-top: solid 2em #0d7239;
     border-left: solid 4.5em transparent;
     border-right: solid 4.5em transparent;
 }
@@ -869,12 +845,12 @@ ul.social li a.fa-google-plus:hover {
 }
 
 #header h1 {
-    color: #d52349;
+    color: #0d7239;
     font-weight: 900;
     font-size: 2.5em;
     line-height: 1;
     margin-bottom: 8px;
-    padding:2px;
+    padding: 2px;
 }
 
 .shrink {
@@ -925,17 +901,21 @@ ul.social li a.fa-google-plus:hover {
 #nav>ul>li.active>a {
     background: #f3f3f3;
 }
-#header{
+
+#header {
     padding: 0!important;
 }
+
 #nav>ul>li.current>a {
-    background: #d52349;
+    background: #0d7239;
     color: #fff !important;
     font-weight: 700;
 }
-html{
+
+html {
     scroll-behavior: smooth;
 }
+
 .dropotron {
     background-color: #252122;
     background-color: rgba(34, 30, 31, 0.98);
@@ -989,13 +969,12 @@ html{
 /* Banner */
 
 #banner {
-    background: url("https://www.itl.cat/pngfile/big/191-1913769_world-map-lights-laptop-full-hd-1080p-4k.jpg");
+    background: url("https://pixelz.cc/wp-content/uploads/2016/11/marketing-analytics-uhd-4k-wallpaper.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     text-align: center;
     position: relative;
     padding: 8em 0;
-    margin: 4em 0 0 0;
 }
 
 #banner header {
@@ -1012,7 +991,7 @@ html{
 }
 
 #banner header p {
-    color: #d52349;
+    color: #0d7239;
     padding: 0;
     font-style: normal;
     margin: 0;
@@ -1076,7 +1055,7 @@ html{
 .section-heading {
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(-45deg, #ff2002, #b80909);
+    background: linear-gradient(-45deg, #0d7239, #07af50);
     display: flex;
     justify-content: center;
     font-family: "Poppins", sans-serif;
@@ -1157,9 +1136,11 @@ small {
     z-index: 0;
     opacity: 0.5;
 }
-#ultimo{
+
+#ultimo {
     padding-bottom: 0!important;
 }
+
 #footer a {
     color: #c5c4c4;
 }
@@ -1458,13 +1439,13 @@ strong {
     }
     #navPanel .link {
         display: block;
-        color: #888;
+        color: white;
         text-decoration: none;
         height: 44px;
         line-height: 44px;
         border-top: solid 1px rgba(255, 255, 255, 0.05);
         padding: 0 1em 0 1em;
-        font-style: italic;
+        font-size: larger;
     }
     #navPanel .link:first-child {
         border-top: 0;
@@ -1630,12 +1611,12 @@ strong {
         padding: 2em 0;
     }
     #header h1 {
-        color: #d52349;
+        color: #0d7239;
         font-weight: 900;
-        font-size: 1.75em;
+        font-size: 40px;
         letter-spacing: -0.035em;
         margin-bottom: 8px;
-        padding:2px;
+        padding: 2px;
     }
     /* Intro */
     #intro {
@@ -1749,4 +1730,134 @@ h2 {
         /* On small screens, we are no longer using row direction but column */
         flex-direction: column;
     }
+}
+
+#facebook {
+    background-color: rgba(44, 44, 168, 0.918);
+}
+
+#web {
+    background-color: rgba(187, 0, 0, 0.918);
+}
+
+#in {
+    background-color: rgba(4, 88, 145, 0.918);
+}
+
+#arrivo {
+    background-color: #f7f7f7;
+}
+
+@media (min-width: 576px) {
+    .container,
+    .container-sm {
+        margin: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .container,
+    .container-sm {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #0d7239;
+    border-color: #0d7239;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #0d7239;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #0d7239;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.section-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(-45deg, #0d7239, #0dac35);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#intro {
+    padding-top: 50px;
+}
+
+#formdati {
+    padding-bottom: 100px;
+}
+
+.startpagina {
+    background-color: #0d7239!important;
+}
+
+.header {
+    height: 400px;
+    background-image: linear-gradient(to right bottom, rgba(13, 114, 57, 0.8), rgba(13, 114, 57, 0.8)), url('https://pixelz.cc/wp-content/uploads/2016/11/marketing-analytics-uhd-4k-wallpaper.jpg');
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+h1 span {
+    color: white;
+    font-size: 30px;
+}
+
+.brand-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.brand {
+    font-size: 20px;
+}
+
+.text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    margin-bottom: 30px;
+}
+
+.heading-primary-main {
+    display: block;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 5px;
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 7.4px;
 }

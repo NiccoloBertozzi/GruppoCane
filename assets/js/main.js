@@ -41,7 +41,8 @@
         });
     }
     });
-
+    var  numeropagine=(persone.length/10)
+    
     for(let i=0;i<10;i++){
         $("#persone").append("<tr><th scope='row'>"+(i+1)+"</th><td>"+persone[i].nome+"</td><td>"+persone[i].cognome+"</td><td>"+persone[i].luogo_residenza.regione+"</td><td>"+persone[i].luogo_residenza.provincia+"</td><td>"+persone[i].luogo_residenza.comune+"</td><td>"+persone[i].anno+"</td></tr>")
     }
