@@ -136,7 +136,6 @@ q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid #0d7239;
 }
 
 body {
@@ -524,7 +523,7 @@ ul {
 }
 
 ul li {
-    padding-left: 0.5em;
+    margin-left: 0.5em;
 }
 
 ol {
@@ -1860,4 +1859,12 @@ h1 span {
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 7.4px;
+}
+.table td, .table th {
+    padding: .40rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+ul li:hover{
+    background-color: rgb(138, 138, 138);
 }

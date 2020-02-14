@@ -3,11 +3,12 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-(function($) {
-
-    var siteScroll = function() {
+(function ($) {
+    var posizioneCorrente = 1;
+    var numeropagine;
+    var siteScroll = function () {
         var title = false;
-        $(window).scroll(function() {
+        $(window).scroll(function () {
 
             var st = $(this).scrollTop();
 
@@ -28,25 +29,55 @@
         })
 
     };
-    var persone =new Array();
+    var persone = new Array();
     $.ajax({
-        type:"GET",
-        contentType:"application/json",
-        url:"https://late-frost-5190.getsandbox.com/anagrafiche",
-        dataType:"json",
-        async:false,
-        success:function(data){
-            $.each(data,function(i,value){
-            persone.push(Object.assign({},value))
-        });
-    }
+        type: "GET",
+        contentType: "application/json",
+        url: "https://late-frost-5190.getsandbox.com/anagrafiche",
+        dataType: "json",
+        success: function (data) {
+            $.each(data, function (i, value) {
+                persone.push(Object.assign({}, value))
+            });
+            if (((persone.length) % 10) == 0) {
+                numeropagine = parseInt(persone.length / 10);
+                $(".pagination").append("<li class=\"page-item\" id=\"previous\"> <a class=\"page-link\" href=\"#arrivo\" tabindex=\"-1\"  style=\"text-decoration:none\"aria-disabled=\"true\">Previous</a> </li>");
+                for (let i = 0; i < numeropagine; i++) {
+                    $(".pagination").append("<li class=\"page-item numeri\"><a class=\"page-link\ href=\"#\">" + (i + 1) + "</a></li>");
+                }
+                $(".pagination").append("<li class=\"page-item\" id=\"next\"> <a class=\"page-link\" href=\"#arrivo\" style=\"text-decoration:none\"tabindex=\"-1\" aria-disabled=\"true\">Next</a> </li>");
+            }
+            StampaTabella(1);
+            function AggiornaTabella() {
+                $("#persone").empty();
+            }
+            /*STAMPA*/
+            function StampaTabella(indicePartenza) {
+                AggiornaTabella();
+                for (let i = ((indicePartenza * 10) - 10); i < (indicePartenza * 10); i++) {
+                    $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td></tr>")
+                }
+            }
+            $(".numeri>.page-link").on("click", function () {
+                var testo = $(this).text();
+                posizioneCorrente = testo;
+                StampaTabella(testo);
+            });
+            $("#previous").on("click", function () {
+                if (posizioneCorrente == 1) posizioneCorrente++;
+                posizioneCorrente--;
+                StampaTabella(posizioneCorrente);
+            });
+            $("#next").on("click", function () {
+                if (posizioneCorrente == numeropagine) posizioneCorrente--;
+                posizioneCorrente++;
+                StampaTabella(posizioneCorrente);
+            });
+        }
     });
-    var  numeropagine=(persone.length/10)
-    
-    for(let i=0;i<10;i++){
-        $("#persone").append("<tr><th scope='row'>"+(i+1)+"</th><td>"+persone[i].nome+"</td><td>"+persone[i].cognome+"</td><td>"+persone[i].luogo_residenza.regione+"</td><td>"+persone[i].luogo_residenza.provincia+"</td><td>"+persone[i].luogo_residenza.comune+"</td><td>"+persone[i].anno+"</td></tr>")
-    }
+
     siteScroll();
+
     var $window = $(window),
         $body = $('body');
 
@@ -59,8 +90,8 @@
     });
 
     // Play initial animations on page load.
-    $window.on('load', function() {
-        window.setTimeout(function() {
+    $window.on('load', function () {
+        window.setTimeout(function () {
             $body.removeClass('is-preload');
         }, 100);
     });
@@ -76,20 +107,20 @@
 
     // Title Bar.
     $(
-            '<div id="titleBar">' +
-            '<a href="#navPanel" class="toggle"></a>' +
-            '</div>'
-        )
+        '<div id="titleBar">' +
+        '<a href="#navPanel" class="toggle"></a>' +
+        '</div>'
+    )
         .appendTo($body);
 
     // Panel.
     $(
-            '<div id="navPanel">' +
-            '<nav>' +
-            $('#nav').navList() +
-            '</nav>' +
-            '</div>'
-        )
+        '<div id="navPanel">' +
+        '<nav>' +
+        $('#nav').navList() +
+        '</nav>' +
+        '</div>'
+    )
         .appendTo($body)
         .panel({
             delay: 500,

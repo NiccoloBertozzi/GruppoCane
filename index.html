@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/animation.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 </head>
 
@@ -50,22 +51,13 @@
                         <h2 class="section-heading animated fadeIn delay-1s">I miei grafici</h2>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="carta-list col-12">
-                        <div class="carta uno col-4">
-                            <div class="card_image">
-                                <p id="cardp1">Card Title</p>
-                            </div>
-                        </div>
-                        <div class="carta uno col-4">
-                            <div class="card_image">
-                                <p id="cartap2">Card Title</p>
-                            </div>
-                        </div>
-                        <div class="carta uno col-4">
-                            <div class="card_image"></div>
-                            <p id="cardp3 ">Card Title</p>
-                        </div>
+                <div class="row mt-4 ml-1 mr-1 justify-content-center align-items-center d-flex">
+                    <!--Grafico-->
+                    <div class="col-8 col-md-6 justify-content-center align-items-center d-flex">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="col-8 col-md-6 justify-content-center align-items-center d-flex">
+                        <canvas id="myChartPie"></canvas>
                     </div>
                 </div>
             </section>
@@ -104,15 +96,7 @@
                 <div class="row justify-content-center mt-3">
                     <nav aria-label="...">
                         <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
+                            
                         </ul>
                     </nav>
                 </div>
@@ -342,8 +326,8 @@
     <script src="assets/js/browser.min.js "></script>
     <script src="assets/js/breakpoints.min.js "></script>
     <script src="assets/js/util.js "></script>
+    <script src="assets/js/grafici.js "></script>
     <script src="assets/js/main.js "></script>
-
 </body>
 
 </html>
