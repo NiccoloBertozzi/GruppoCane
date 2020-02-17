@@ -307,10 +307,12 @@
                         </div>
                         <div class="row pb-3">
                             <div class="col-4 text-left">
-                                <label>Regione</label>
+                                <label>Comune</label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Regione">
+                                <select class="comuni text-center rounded">
+                                    <option value="" hidden>Seleziona comune</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row pb-3">
@@ -318,15 +320,19 @@
                                 <label>Provincia</label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Provincia">
+                                <select class="province text-center rounded">
+                                    <option value="" hidden>Seleziona provincia</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row pb-3">
                             <div class="col-4 text-left">
-                                <label>Comune</label>
+                                <label>Regione</label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Comune">
+                                <select class="regioni text-center rounded">
+                                    <option value="" hidden>Seleziona regione</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row pb-3">
@@ -458,7 +464,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                    <button type="button" class="btn btn-success">Conferma</button>
+                    <button type="button" class="btn btn-success btnCofirmDeath">Conferma</button>
                 </div>
             </div>
         </div>
