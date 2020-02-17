@@ -72,11 +72,11 @@ $(function() {
         $(".pagination").empty();
         if (((array.length) % $("#shownumber").val()) == 0) numeropagine = parseInt(array.length / $("#shownumber").val());
         else numeropagine = parseInt((array.length / $("#shownumber").val()) + 1);
-        $(".pagination").append('<li class="page-item" id="previous"> <a class="page-link" href="#arrivo" tabindex="-1"  style="text-decoration:none"aria-disabled="true">Previous</a> </li>');
+        $(".pagination").append('<li class="page-item" id="previous"> <a class="page-link" href="#main" tabindex="-1"  style="text-decoration:none"aria-disabled="true">Previous</a> </li>');
         for (let i = 0; i < numeropagine; i++) {
-            $(".pagination").append('<li class="page-item numeri"><a class="page-link" style="text-decoration:none" href="#arrivo">' + (i + 1) + '</a></li>');
+            $(".pagination").append('<li class="page-item numeri"><a class="page-link" style="text-decoration:none" href="#main">' + (i + 1) + '</a></li>');
         }
-        $(".pagination").append('<li class="page-item" id="next"> <a class="page-link" href="#arrivo" style="text-decoration:none"tabindex="-1" aria-disabled="true">Next</a> </li>');
+        $(".pagination").append('<li class="page-item" id="next"> <a class="page-link" href="#main" style="text-decoration:none"tabindex="-1" aria-disabled="true">Next</a> </li>');
         StampaTabella(1, $("#shownumber").val());
     }
     /*SVOTA TABELLA*/
@@ -88,9 +88,9 @@ $(function() {
         AggiornaTabella();
         for (let i = ((indicePartenza * numShow) - numShow); i < (numShow * indicePartenza); i++) {
             if ($("#search").val()) {
-                $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
+                $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
             } else {
-                $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
+                $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
             }
         }
     }
