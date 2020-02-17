@@ -1951,3 +1951,13 @@ h1 span {
 #mostra {
     font-size: 20px;
 }
+
+.btnElimina{
+    background-color: #ea3723;
+    border-color: #ea3723;
+}
+
+.btnElimina:hover{
+    background-color: #c02918;
+    border-color: #c02918;
+}
