@@ -3,12 +3,21 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-$(function () {
+$(function() {
     var posizioneCorrente = 1;
     var numeropagine;
-    var siteScroll = function () {
+    var persone = new Array();
+    var cercaList = new Array();
+    /*FALSE ORDINATO CRESCENTE TRUE DECRESCENTE*/
+    var nomeorder = false,
+        cognomeorder = false,
+        regioneorder = false,
+        provinciaorder = false,
+        comuneorder = false,
+        annoorder = false;
+    var siteScroll = function() {
         var title = false;
-        $(window).scroll(function () {
+        $(window).scroll(function() {
 
             var st = $(this).scrollTop();
 
@@ -28,57 +37,241 @@ $(function () {
 
         })
     };
-    var persone = new Array();
     $.ajax({
         type: "GET",
         contentType: "application/json",
         url: "https://late-frost-5190.getsandbox.com/anagrafiche",
         dataType: "json",
-        success: function (data) {
-            $.each(data, function (i, value) {
+        success: function(data) {
+            $.each(data, function(i, value) {
                 persone.push(Object.assign({}, value))
             });
-            CalcPag();
-            function CalcPag() {
-                $(".pagination").empty();
-                if (((persone.length) % $("#shownumber").val()) == 0) numeropagine = parseInt(persone.length / $("#shownumber").val());
-                else numeropagine = parseInt((persone.length / $("#shownumber").val()) + 1);
-                $(".pagination").append('<li class="page-item" id="previous"> <a class="page-link" href="#arrivo" tabindex="-1"  style="text-decoration:none"aria-disabled="true">Previous</a> </li>');
-                for (let i = 0; i < numeropagine; i++) {
-                    $(".pagination").append('<li class="page-item numeri"><a class="page-link" style="text-decoration:none" href="#arrivo">' + (i + 1) + '</a></li>');
-                }
-                $(".pagination").append('<li class="page-item" id="next"> <a class="page-link" href="#arrivo" style="text-decoration:none"tabindex="-1" aria-disabled="true">Next</a> </li>');
-                StampaTabella(1, $("#shownumber").val());
-            }
-            function AggiornaTabella() {
-                $("#persone").empty();
-            }
-            /*STAMPA*/
-            function StampaTabella(indicePartenza, numShow) {
-                AggiornaTabella();
-                for (let i = ((indicePartenza * 10) - 10); i < (numShow * indicePartenza); i++) {
-                    $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\"></i><i class=\"fas fa-edit edit rounded\"></i><i class=\"fas fa-church wedding rounded\"></i><i class=\"fas fa-home home rounded\"></i></td></tr>");
-                }
-            }
-            $("#shownumber").change(function () {
-                CalcPag();
-            });
-            $("#previous").on("click", function () {
-                if (posizioneCorrente == 1) posizioneCorrente++;
-                posizioneCorrente--;
-                StampaTabella(posizioneCorrente, $("#shownumber").val());
-            });
-            $("#next").on("click", function () {
-                if (posizioneCorrente == numeropagine) posizioneCorrente--;
-                posizioneCorrente++;
-                StampaTabella(posizioneCorrente, $("#shownumber").val());
-            });
-            $(".numeri>.page-link").on("click", function () {
-                var testo = $(this).text();
-                posizioneCorrente = testo;
-                StampaTabella(testo, $("#shownumber").val());
-            });
+            CalcPag(persone);
         }
+    });
+    /*CERCA*/
+    $(document).on("keyup", "#search", function() {
+        cercaList.length = 0;
+        AggiornaTabella();
+        var i = 0;
+        var val = $(this).val();
+        if (val) {
+            val = val.toLowerCase();
+            $.each(persone, function(_, obj) {
+                // console.log(val,obj.name.toLowerCase().indexOf(val),obj)
+                if (obj.nome.toLowerCase().indexOf(val) != -1 || obj.cognome.toLowerCase().indexOf(val) != -1 || obj.luogo_residenza.regione.toLowerCase().indexOf(val) != -1 || obj.luogo_residenza.provincia.toLowerCase().indexOf(val) != -1 || obj.luogo_residenza.comune.toLowerCase().indexOf(val) != -1 || obj.anno.toString().indexOf(val) > -1) {
+                    cercaList[i] = obj;
+                    i++;
+                }
+            });
+            CalcPag(cercaList);
+        } else CalcPag(persone);
+    });
+    /*CALCOLO NUMERO DELLE PAGINE*/
+    function CalcPag(array) {
+        $(".pagination").empty();
+        if (((array.length) % $("#shownumber").val()) == 0) numeropagine = parseInt(array.length / $("#shownumber").val());
+        else numeropagine = parseInt((array.length / $("#shownumber").val()) + 1);
+        $(".pagination").append('<li class="page-item" id="previous"> <a class="page-link" href="#arrivo" tabindex="-1"  style="text-decoration:none"aria-disabled="true">Previous</a> </li>');
+        for (let i = 0; i < numeropagine; i++) {
+            $(".pagination").append('<li class="page-item numeri"><a class="page-link" style="text-decoration:none" href="#arrivo">' + (i + 1) + '</a></li>');
+        }
+        $(".pagination").append('<li class="page-item" id="next"> <a class="page-link" href="#arrivo" style="text-decoration:none"tabindex="-1" aria-disabled="true">Next</a> </li>');
+        StampaTabella(1, $("#shownumber").val());
+    }
+    /*SVOTA TABELLA*/
+    function AggiornaTabella() {
+        $("#persone").empty();
+    }
+    /*STAMPA*/
+    function StampaTabella(indicePartenza, numShow) {
+        AggiornaTabella();
+        for (let i = ((indicePartenza * numShow) - numShow); i < (numShow * indicePartenza); i++) {
+            if ($("#search").val()) {
+                $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
+            } else {
+                $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
+            }
+        }
+    }
+    /*CONTROLLA CAMBIO NUM DI NOMI DA VEDERE NELLA PAGINA*/
+    $("#shownumber").change(function() {
+        CalcPag(persone);
+    });
+    /*COMPARA*/
+    function compare(a, b) {
+        let comparison = 0;
+        if (a > b) {
+            comparison = 1;
+        } else if (a < b) {
+            comparison = -1;
+        }
+        return comparison;
+    }
+    /*ORDINA*/
+    $(document).on("click", ".order", function() {
+        var temp = new Array();
+        var f = $(this).attr("id");
+        switch (f) {
+            case "nome":
+                for (let j = 0; j < persone.length; j++) {
+                    for (let i = j + 1; i < persone.length; i++) {
+                        // comparing adjacent strings
+                        if (!nomeorder) {
+                            if (compare(persone[i].nome, persone[j].nome) < 0) {
+                                temp = persone[j];
+                                persone[j] = persone[i]
+                                persone[i] = temp;
+                            }
+                        } else {
+                            if (compare(persone[i].nome, persone[j].nome) > 0) {
+                                temp = persone[i];
+                                persone[i] = persone[j];
+                                persone[j] = temp;
+                            }
+                        }
+                    }
+                    CalcPag(persone);
+                }
+                if (!nomeorder) nomeorder = true;
+                else nomeorder = false;
+                break;
+            case "cognome":
+                for (let j = 0; j < persone.length; j++) {
+                    for (let i = j + 1; i < persone.length; i++) {
+                        // comparing adjacent strings
+                        if (!cognomeorder) {
+                            if (compare(persone[i].cognome, persone[j].cognome) < 0) {
+                                temp = persone[j];
+                                persone[j] = persone[i]
+                                persone[i] = temp;
+                            }
+                        } else {
+                            if (compare(persone[i].cognome, persone[j].cognome) > 0) {
+                                temp = persone[i];
+                                persone[i] = persone[j];
+                                persone[j] = temp;
+                            }
+                        }
+                    }
+                    CalcPag(persone);
+                }
+                if (!cognomeorder) cognomeorder = true;
+                else cognomeorder = false;
+                break;
+            case "regione":
+                for (let j = 0; j < persone.length; j++) {
+                    for (let i = j + 1; i < persone.length; i++) {
+                        // comparing adjacent strings
+                        if (!regioneorder) {
+                            if (compare(persone[i].luogo_residenza.regione, persone[j].luogo_residenza.regione) < 0) {
+                                temp = persone[j];
+                                persone[j] = persone[i]
+                                persone[i] = temp;
+                            }
+                        } else {
+                            if (compare(persone[i].luogo_residenza.regione, persone[j].luogo_residenza.regione) > 0) {
+                                temp = persone[i];
+                                persone[i] = persone[j];
+                                persone[j] = temp;
+                            }
+                        }
+                    }
+                    CalcPag(persone);
+                }
+                if (!regioneorder) regioneorder = true;
+                else regioneorder = false;
+                break;
+            case "provincia":
+                for (let j = 0; j < persone.length; j++) {
+                    for (let i = j + 1; i < persone.length; i++) {
+                        // comparing adjacent strings
+                        if (!provinciaorder) {
+                            if (compare(persone[i].luogo_residenza.provincia, persone[j].luogo_residenza.provincia) < 0) {
+                                temp = persone[j];
+                                persone[j] = persone[i]
+                                persone[i] = temp;
+                            }
+                        } else {
+                            if (compare(persone[i].luogo_residenza.provincia, persone[j].luogo_residenza.provincia) > 0) {
+                                temp = persone[i];
+                                persone[i] = persone[j];
+                                persone[j] = temp;
+                            }
+                        }
+                    }
+                    CalcPag(persone);
+                }
+                if (!provinciaorder) provinciaorder = true;
+                else provinciaorder = false;
+                break;
+            case "comune":
+                for (let j = 0; j < persone.length; j++) {
+                    for (let i = j + 1; i < persone.length; i++) {
+                        // comparing adjacent strings
+                        if (!comuneorder) {
+                            if (compare(persone[i].luogo_residenza.comune, persone[j].luogo_residenza.comune) < 0) {
+                                temp = persone[j];
+                                persone[j] = persone[i]
+                                persone[i] = temp;
+                            }
+                        } else {
+                            if (compare(persone[i].luogo_residenza.comune, persone[j].luogo_residenza.comune) > 0) {
+                                temp = persone[i];
+                                persone[i] = persone[j];
+                                persone[j] = temp;
+                            }
+                        }
+                    }
+                    CalcPag(persone);
+                }
+                if (!comuneorder) comuneorder = true;
+                else comuneorder = false;
+                break;
+            case "anno":
+                for (let j = 0; j < persone.length; j++) {
+                    for (let i = j + 1; i < persone.length; i++) {
+                        // comparing adjacent strings
+                        if (!annoorder) {
+                            if (compare(persone[i].anno, persone[j].anno) < 0) {
+                                temp = persone[j];
+                                persone[j] = persone[i]
+                                persone[i] = temp;
+                            }
+                        } else {
+                            if (compare(persone[i].anno, persone[j].anno) > 0) {
+                                temp = persone[i];
+                                persone[i] = persone[j];
+                                persone[j] = temp;
+                            }
+                        }
+                    }
+                    CalcPag(persone);
+                }
+                if (!annoorder) annoorder = true;
+                else annoorder = false;
+                break;
+            default:
+                break;
+        }
+    });
+    /*CLICK PRECEDENTE*/
+    $(document).on("click", "#previous", function() {
+        if (posizioneCorrente == 1) posizioneCorrente++;
+        posizioneCorrente--;
+        StampaTabella(posizioneCorrente, $("#shownumber").val());
+    });
+    /*CLICK SUCCESSIVO*/
+    $(document).on("click", "#next", function() {
+        if (posizioneCorrente == numeropagine) posizioneCorrente--;
+        posizioneCorrente++;
+        StampaTabella(posizioneCorrente, $("#shownumber").val());
+    });
+    /*CLICK NUMERO PAGINA*/
+    $(document).on("click", ".numeri>.page-link", function() {
+        var testo = $(this).text();
+        posizioneCorrente = testo;
+        StampaTabella(testo, $("#shownumber").val());
     });
     siteScroll();
     var $window = $(window),
@@ -93,8 +286,8 @@ $(function () {
     });
 
     // Play initial animations on page load.
-    $window.on('load', function () {
-        window.setTimeout(function () {
+    $window.on('load', function() {
+        window.setTimeout(function() {
             $body.removeClass('is-preload');
         }, 100);
     });
@@ -110,20 +303,20 @@ $(function () {
 
     // Title Bar.
     $(
-        '<div id="titleBar">' +
-        '<a href="#navPanel" class="toggle"></a>' +
-        '</div>'
-    )
+            '<div id="titleBar">' +
+            '<a href="#navPanel" class="toggle"></a>' +
+            '</div>'
+        )
         .appendTo($body);
 
     // Panel.
     $(
-        '<div id="navPanel">' +
-        '<nav>' +
-        $('#nav').navList() +
-        '</nav>' +
-        '</div>'
-    )
+            '<div id="navPanel">' +
+            '<nav>' +
+            $('#nav').navList() +
+            '</nav>' +
+            '</div>'
+        )
         .appendTo($body)
         .panel({
             delay: 500,
