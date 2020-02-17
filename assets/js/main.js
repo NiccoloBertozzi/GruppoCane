@@ -9,6 +9,8 @@ $(function () {
     var persone = new Array();
     var cercaList = new Array();
     var arrayTerritory = new Array();
+    var idedit;
+    var selectedID;
     /*FALSE ORDINATO CRESCENTE TRUE DECRESCENTE*/
     var nomeorder = false,
         cognomeorder = false,
@@ -120,11 +122,11 @@ $(function () {
         $(".pagination").empty();
         if (((array.length) % $("#shownumber").val()) == 0) numeropagine = parseInt(array.length / $("#shownumber").val());
         else numeropagine = parseInt((array.length / $("#shownumber").val()) + 1);
-        $(".pagination").append('<li class="page-item" id="previous"> <a class="page-link" href="#main" tabindex="-1"  style="text-decoration:none"aria-disabled="true">Previous</a> </li>');
+        $(".pagination").append('<li class="page-item" id="previous"> <a class="page-link" href="#main" tabindex="-1"  style="text-decoration:none"aria-disabled="true">Precedente</a> </li>');
         for (let i = 0; i < numeropagine; i++) {
             $(".pagination").append('<li class="page-item numeri"><a class="page-link" style="text-decoration:none" href="#main">' + (i + 1) + '</a></li>');
         }
-        $(".pagination").append('<li class="page-item" id="next"> <a class="page-link" href="#main" style="text-decoration:none"tabindex="-1" aria-disabled="true">Next</a> </li>');
+        $(".pagination").append('<li class="page-item" id="next"> <a class="page-link" href="#main" style="text-decoration:none"tabindex="-1" aria-disabled="true">Successivo</a> </li>');
         StampaTabella(1, $("#shownumber").val());
     }
     /*SVOTA TABELLA*/
@@ -170,10 +172,24 @@ $(function () {
             dataType: "json",
         });
     });
+    $(document).on("click", ".inviaModifica", function() {
+        dt = '{"nome": "' + $("#nomemod").val().toString() + '", "cognome": "' + $('#cognomemod').val().toString() + '", "anno_nascita": "' + $('#annomod').val().toString() + '", "regione": "' + $('#regionemod').val().toString() + '","provincia": "' + $('#provinciamod').val().toString() + '", "comune": "' + $('#comunemod').val().toString() + '", "anno": 2020}';
+        $.ajax({
+            type: "POST",
+            headers: { "Access-Control-Allow-Origin": "*" },
+            data: dt,
+            /* Per poter aggiungere una entry bisogna prima autenticarsi. */
+            contentType: "application/json",
+            url: "https://late-frost-5190.getsandbox.com/anagrafiche/edit/"+idedit,
+            dataType: "json",
+        });
+    });
+
     /*DELETE*/
-    $(document).on("click", ".delete", function () {
-        var selectedID = $(this).attr("id");
-        $(document).on("click", ".btnElimina", function () {
+    $(document).on("click", ".delete", function() {
+         selectedID = $(this).attr("id");
+    });
+        $(document).on("click", ".btnElimina", function(){
             $.ajax({
                 type: "DELETE",
                 /* Per poter rimuovere una entry bisogna prima autenticarsi con un'account di amministratore. */
@@ -410,7 +426,3 @@ $(function () {
             target: $body,
             visibleClass: 'navPanel-visible'
         });
-
-
-
-});
