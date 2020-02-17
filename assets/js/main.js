@@ -88,9 +88,9 @@ $(function() {
         AggiornaTabella();
         for (let i = ((indicePartenza * numShow) - numShow); i < (numShow * indicePartenza); i++) {
             if ($("#search").val()) {
-                $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
+                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\"data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
             } else {
-                $("#persone").append("<tr><th scope='row'>" + (i + 1) + "</th><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
+                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
             }
         }
     }
@@ -112,6 +112,27 @@ $(function() {
         }
         return comparison;
     }
+    /*EDIT*/
+    $(document).on("click", ".edit", function() {
+        $.ajax({
+            type: "POST",
+            data: {"username": "username", "password": "password"},
+            contentType: "application/json",
+            url: "https://late-frost-5190.getsandbox.com/anagrafiche/edit/"+$(this).attr("id"),
+            dataType: "json"
+      });
+    });
+    /*DELETE*/
+    $(document).on("click", ".edit", function() {
+        $.ajax({
+            type: "DELETE",
+            data: {"id": id},
+            /* Per poter rimuovere una entry bisogna prima autenticarsi con un'account di amministratore. */
+            contentType: "application/json",
+            url: "https://late-frost-5190.getsandbox.com/anagrafiche/remove/" + id,
+            dataType: "json"
+      });
+    });
     /*ORDINA*/
     $(document).on("click", ".order", function() {
         var temp = new Array();
