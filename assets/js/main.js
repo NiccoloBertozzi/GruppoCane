@@ -114,13 +114,17 @@ $(function() {
     }
     /*EDIT*/
     $(document).on("click", ".edit", function() {
-        $.ajax({
-            type: "POST",
-            data: {"username": "username", "password": "password"},
-            contentType: "application/json",
-            url: "https://late-frost-5190.getsandbox.com/anagrafiche/edit/"+$(this).attr("id"),
-            dataType: "json"
-      });
+        var dt = '{"nome": "' + $("#nomemod").val().toString() + '", "cognome": "' + $('#cognomemod').val().toString() + '", "anno_nascita": "' + $('#annomod').val().toString() + '", "regione": "' + $('#regionemod').val().toString() + '","provincia": "' + $('#provinciamod').val().toString() + '", "comune": "' + $('#comunemod').val().toString() + '", "anno": 2020}';
+            persone[c] = new Persona(new cartaIdentita([$('#nome').val().toString(), $('#cognome').val().toString(), [$('#residenza').val().toString(), $('#provincia').val().toString(), $('#regione').val().toString()], $('#indirizzo').val().toString(), new Date($('#data').val().toString()), $('#rilascio').val().toString()]), c);
+            $.ajax({
+                type: "POST",
+                headers: { "Access-Control-Allow-Origin": "*" },
+                data: dt,
+                /* Per poter aggiungere una entry bisogna prima autenticarsi. */
+                contentType: "application/json",
+                url: "https://late-frost-5190.getsandbox.com/anagrafiche/"+$(this).attr("id"),
+                dataType: "json",
+            });
     });
     /*DELETE*/
     $(document).on("click", ".delete", function() {
