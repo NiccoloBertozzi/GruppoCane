@@ -90,9 +90,9 @@ $(function() {
         AggiornaTabella();
         for (let i = ((indicePartenza * numShow) - numShow); i < (numShow * indicePartenza); i++) {
             if ($("#search").val()) {
-                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\"data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
+                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+persone[i].id+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+persone[i].id+"\"data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\""+persone[i].id+"\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
             } else {
-                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
+                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+persone[i].id+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+persone[i].id+"\" data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\""+persone[i].id+"\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
             }
         }
     }
@@ -115,15 +115,24 @@ $(function() {
             idedit=$(this).attr("id");           
     });
     $(document).on("click", ".inviaModifica", function() {
-        dt = '{"nome": "' + $("#nomemod").val().toString() + '", "cognome": "' + $('#cognomemod').val().toString() + '", "anno_nascita": "' + $('#annomod').val().toString() + '", "regione": "' + $('#regionemod').val().toString() + '","provincia": "' + $('#provinciamod').val().toString() + '", "comune": "' + $('#comunemod').val().toString() + '", "anno": 2020}';
+        dt = '{"nome":"' + $("#nomemod").val().toString() + '","cognome":"' + $('#cognomemod').val().toString() + '","luogo_residenza":{"regione":"' + $('#regionemod').val().toString() + '","provincia":"' + $('#provinciamod').val().toString() + '","comune":"' + $('#comunemod').val().toString()+'"},"anno_nascita":"' + $('#annomod').val().toString() +'","anno":"2020","indirizzo":"'+persone[parseInt(idedit)-1].indirizzo +'","codice":"'+persone[parseInt(idedit)-1].codice +'"}';
+        $("#nomemod").val(persone[idedit]);
         $.ajax({
             type: "POST",
             headers: { "Access-Control-Allow-Origin": "*" },
-            data: dt,
+            data:dt,
             /* Per poter aggiungere una entry bisogna prima autenticarsi. */
             contentType: "application/json",
-            url: "https://late-frost-5190.getsandbox.com/anagrafiche/edit/"+idedit,
+            crossDomain: true,
+            url: "https://late-frost-5190.getsandbox.com/anagrafiche/edit/"+idedit+"/",
             dataType: "json",
+            success: function(data){
+               $(".chiudi").click();
+            },
+            error: function (jqXHR,textStatus,errorThrown){
+                let x=0;
+                alert(jqXHR.responseText);
+            }
         });
     });
 
@@ -134,16 +143,28 @@ $(function() {
         $(document).on("click", ".btnElimina", function(){
             $.ajax({
                 type: "DELETE",
+                headers: { "Access-Control-Allow-Origin": "*" },
                 /* Per poter rimuovere una entry bisogna prima autenticarsi con un'account di amministratore. */
                 contentType: "application/json",
-                url: "https://late-frost-5190.getsandbox.com/anagrafiche/remove/" + selectedID,
+                url: "https://late-frost-5190.getsandbox.com/anagrafiche/remove/" + selectedID+"/",
                 dataType: "json",
-                success: function(data){
-                    CalcPag(persone);
+            }).then(function(data){
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json",
+                        url: "https://late-frost-5190.getsandbox.com/anagrafiche",
+                        dataType: "json",
+                        success: function(data) {
+                            $.each(data, function(i, value) {
+                                persone.push(Object.assign({}, value))
+                            });
+                            CalcPag(persone);
+                        }
+                    });
                 }
-            });
-        })
-    });
+            )
+            
+        });
     $(document).on("click", ".decesso", function(){
 
     })
