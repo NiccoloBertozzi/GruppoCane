@@ -8,6 +8,8 @@ $(function() {
     var numeropagine;
     var persone = new Array();
     var cercaList = new Array();
+    var idedit;
+    var selectedID;
     /*FALSE ORDINATO CRESCENTE TRUE DECRESCENTE*/
     var nomeorder = false,
         cognomeorder = false,
@@ -110,21 +112,25 @@ $(function() {
     }
     /*EDIT*/
     $(document).on("click", ".edit", function() {
-        var dt = '{"nome": "' + $("#nomemod").val().toString() + '", "cognome": "' + $('#cognomemod').val().toString() + '", "anno_nascita": "' + $('#annomod').val().toString() + '", "regione": "' + $('#regionemod').val().toString() + '","provincia": "' + $('#provinciamod').val().toString() + '", "comune": "' + $('#comunemod').val().toString() + '", "anno": 2020}';
-            persone[c] = new Persona(new cartaIdentita([$('#nome').val().toString(), $('#cognome').val().toString(), [$('#residenza').val().toString(), $('#provincia').val().toString(), $('#regione').val().toString()], $('#indirizzo').val().toString(), new Date($('#data').val().toString()), $('#rilascio').val().toString()]), c);
-            $.ajax({
-                type: "POST",
-                headers: { "Access-Control-Allow-Origin": "*" },
-                data: dt,
-                /* Per poter aggiungere una entry bisogna prima autenticarsi. */
-                contentType: "application/json",
-                url: "https://late-frost-5190.getsandbox.com/anagrafiche/"+$(this).attr("id"),
-                dataType: "json",
-            });
+            idedit=$(this).attr("id");           
     });
+    $(document).on("click", ".inviaModifica", function() {
+        dt = '{"nome": "' + $("#nomemod").val().toString() + '", "cognome": "' + $('#cognomemod').val().toString() + '", "anno_nascita": "' + $('#annomod').val().toString() + '", "regione": "' + $('#regionemod').val().toString() + '","provincia": "' + $('#provinciamod').val().toString() + '", "comune": "' + $('#comunemod').val().toString() + '", "anno": 2020}';
+        $.ajax({
+            type: "POST",
+            headers: { "Access-Control-Allow-Origin": "*" },
+            data: dt,
+            /* Per poter aggiungere una entry bisogna prima autenticarsi. */
+            contentType: "application/json",
+            url: "https://late-frost-5190.getsandbox.com/anagrafiche/edit/"+idedit,
+            dataType: "json",
+        });
+    });
+
     /*DELETE*/
     $(document).on("click", ".delete", function() {
-        var selectedID = $(this).attr("id");
+         selectedID = $(this).attr("id");
+    });
         $(document).on("click", ".btnElimina", function(){
             $.ajax({
                 type: "DELETE",
