@@ -88,9 +88,9 @@ $(function() {
         AggiornaTabella();
         for (let i = ((indicePartenza * numShow) - numShow); i < (numShow * indicePartenza); i++) {
             if ($("#search").val()) {
-                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\"data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
+                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\"data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
             } else {
-                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i></td></tr>");
+                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
             }
         }
     }
@@ -98,10 +98,6 @@ $(function() {
     $("#shownumber").change(function() {
         CalcPag(persone);
     });
-    /*EVENTO BOTTONE ELIMINA MODAL*/
-    $(".btnElimina").on("click", function(){
-        alert("ciao");
-    })
     /*COMPARA*/
     function compare(a, b) {
         let comparison = 0;
@@ -142,6 +138,9 @@ $(function() {
             });
         })
     });
+    $(document).on("click", ".decesso", function(){
+
+    })
     /*ORDINA*/
     $(document).on("click", ".order", function() {
         var temp = new Array();

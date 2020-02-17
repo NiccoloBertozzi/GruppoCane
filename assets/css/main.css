@@ -1927,6 +1927,17 @@ h1 span {
     background-color: rgb(15, 172, 20);
 }
 
+.morte{
+    background-color: rgb(97, 97, 97);
+    padding: 5px;
+    color: white;
+    margin-right: 3px;
+}
+
+.morte:hover{
+    background-color: black;
+}
+
 .input-group.md-form.form-sm.form-1 input {
     border: 1px solid #bdbdbd;
     border-top-right-radius: 0.25rem;
