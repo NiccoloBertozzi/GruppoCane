@@ -189,7 +189,6 @@ html {
 
 body {
     background: #252122;
-    background-image: url("images/bg02.png");
 }
 
 body.is-preload *,
@@ -1103,14 +1102,9 @@ html {
     top: 0;
     left: 0;
     width: 100%;
-    background: url("images/bg01.png");
     background-size: 100% 100%;
     z-index: 0;
     opacity: 0.1;
-}
-
-#main .major h2 {
-    background: #f7f7f7 url("images/bg02.png");
 }
 
 .opacity-5 {
@@ -1142,7 +1136,6 @@ small {
     top: 0;
     left: 0;
     width: 100%;
-    background: url("images/bg01.png");
     background-size: 100% 100%;
     z-index: 0;
     opacity: 0.5;
@@ -1445,7 +1438,6 @@ strong {
         width: 275px;
         z-index: 10002;
         color: #858484;
-        background-image: url("images/bg02.png");
         box-shadow: inset -3px 0px 5px 0px rgba(0, 0, 0, 0.35);
     }
     #navPanel .link {
@@ -1958,4 +1950,14 @@ h1 span {
 
 #mostra {
     font-size: 20px;
+}
+
+.btnElimina{
+    background-color: #ea3723;
+    border-color: #ea3723;
+}
+
+.btnElimina:hover{
+    background-color: #c02918;
+    border-color: #c02918;
 }
