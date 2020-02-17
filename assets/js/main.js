@@ -98,6 +98,10 @@ $(function() {
     $("#shownumber").change(function() {
         CalcPag(persone);
     });
+    /*EVENTO BOTTONE ELIMINA MODAL*/
+    $(".btnElimina").on("click", function(){
+        alert("ciao");
+    })
     /*COMPARA*/
     function compare(a, b) {
         let comparison = 0;
