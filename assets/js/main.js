@@ -3,11 +3,12 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-$(function() {
+$(function () {
     var posizioneCorrente = 1;
     var numeropagine;
     var persone = new Array();
     var cercaList = new Array();
+    var arrayTerritory = new Array();
     /*FALSE ORDINATO CRESCENTE TRUE DECRESCENTE*/
     var nomeorder = false,
         cognomeorder = false,
@@ -15,9 +16,9 @@ $(function() {
         provinciaorder = false,
         comuneorder = false,
         annoorder = false;
-    var siteScroll = function() {
+    var siteScroll = function () {
         var title = false;
-        $(window).scroll(function() {
+        $(window).scroll(function () {
 
             var st = $(this).scrollTop();
 
@@ -42,22 +43,69 @@ $(function() {
         contentType: "application/json",
         url: "https://late-frost-5190.getsandbox.com/anagrafiche",
         dataType: "json",
-        success: function(data) {
-            $.each(data, function(i, value) {
+        success: function (data) {
+            $.each(data, function (i, value) {
                 persone.push(Object.assign({}, value))
             });
             CalcPag(persone);
         }
     });
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "https://late-frost-5190.getsandbox.com/territorio",
+        dataType: "json",
+        success: function (data) {
+            $.each(data, function (i, value) {
+                arrayTerritory.push(Object.assign({}, value))
+                arrayTerritory = arrayTerritory[0];
+                for (let i = 0; i < 20; i++) {
+                    $(".regioni").append(new Option(arrayTerritory[i].nome, arrayTerritory[i].nome));
+                }
+            });
+        }
+    })
+    /*FILTRO PROVINCE*/
+    $(document).on("change", ".regioni", function () {
+        $(".province").empty();
+        $(".comuni").empty();
+        var selectedRegion = $(".regioni").val();
+        for (var i = 0; i < 20; i++) {
+            if (arrayTerritory[i].nome == selectedRegion) {
+                for (let j = 0; j < arrayTerritory[i].province.length; j++) {
+                    $(".province").append(new Option(arrayTerritory[i].province[j].nome, arrayTerritory[i].province[j].nome));
+                    for (let o = 0; o < arrayTerritory[i].province[j].comuni.length; o++) {
+                        $(".comuni").append(new Option(arrayTerritory[i].province[j].comuni[o], arrayTerritory[i].province[j].comuni[o]));
+                    }
+                }
+            }
+        }
+    })
+    /*FILTRO COMUNI*/
+    $(document).on("change", ".regioni", function () {
+        $(".province").empty();
+        $(".comuni").empty();
+        var selectedRegion = $(".regioni").val();
+        for (var i = 0; i < 20; i++) {
+            if (arrayTerritory[i].nome == selectedRegion) {
+                for (let j = 0; j < arrayTerritory[i].province.length; j++) {
+                    $(".province").append(new Option(arrayTerritory[i].province[j].nome, arrayTerritory[i].province[j].nome));
+                    for (let o = 0; o < arrayTerritory[i].province[j].comuni.length; o++) {
+                        $(".comuni").append(new Option(arrayTerritory[i].province[j].comuni[o], arrayTerritory[i].province[j].comuni[o]));
+                    }
+                }
+            }
+        }
+    })
     /*CERCA*/
-    $(document).on("keyup", "#search", function() {
+    $(document).on("keyup", "#search", function () {
         cercaList.length = 0;
         AggiornaTabella();
         var i = 0;
         var val = $(this).val();
         if (val) {
             val = val.toLowerCase();
-            $.each(persone, function(_, obj) {
+            $.each(persone, function (_, obj) {
                 // console.log(val,obj.name.toLowerCase().indexOf(val),obj)
                 if (obj.nome.toLowerCase().indexOf(val) != -1 || obj.cognome.toLowerCase().indexOf(val) != -1 || obj.luogo_residenza.regione.toLowerCase().indexOf(val) != -1 || obj.luogo_residenza.provincia.toLowerCase().indexOf(val) != -1 || obj.luogo_residenza.comune.toLowerCase().indexOf(val) != -1 || obj.anno.toString().indexOf(val) > -1) {
                     cercaList[i] = obj;
@@ -88,14 +136,14 @@ $(function() {
         AggiornaTabella();
         for (let i = ((indicePartenza * numShow) - numShow); i < (numShow * indicePartenza); i++) {
             if ($("#search").val()) {
-                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\"data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
+                $("#persone").append("<tr><td scope='row'>" + (i + 1) + "</td><td>" + cercaList[i].nome + "</td><td>" + cercaList[i].cognome + "</td><td>" + cercaList[i].luogo_residenza.regione + "</td><td>" + cercaList[i].luogo_residenza.provincia + "</td><td>" + cercaList[i].luogo_residenza.comune + "</td><td>" + cercaList[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\"" + (i + 1) + "\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\"" + (i + 1) + "\"data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\"" + (i + 1) + "\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
             } else {
-                $("#persone").append("<tr><td scope='row'>" + (i+1) + "</td><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\""+(i+1)+"\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
+                $("#persone").append("<tr><td scope='row'>" + (i + 1) + "</td><td>" + persone[i].nome + "</td><td>" + persone[i].cognome + "</td><td>" + persone[i].luogo_residenza.regione + "</td><td>" + persone[i].luogo_residenza.provincia + "</td><td>" + persone[i].luogo_residenza.comune + "</td><td>" + persone[i].anno + "</td><td class=\"d-flex justify-content-center\"><i class=\"fas fa-trash-alt delete rounded\" title=\"Elimina\" id=\"" + (i + 1) + "\" data-toggle=\"modal\" data-target=\"#exampleModal\"></i><i class=\"fas fa-edit edit rounded\" title=\"Modifica\" id=\"" + (i + 1) + "\" data-toggle=\"modal\" data-target=\"#exampleModalEdit\"></i><i class=\"fas fa-church wedding rounded\" title=\"Add Matrimonio\"></i><i class=\"fas fa-home home rounded\" title=\"Add Residenza\"></i><i class=\"fas fa-skull morte rounded\" title=\"Decesso\" id=\"" + (i + 1) + "\" data-toggle=\"modal\" data-target=\"#modalMorte\"></i></td></tr>");
             }
         }
     }
     /*CONTROLLA CAMBIO NUM DI NOMI DA VEDERE NELLA PAGINA*/
-    $("#shownumber").change(function() {
+    $("#shownumber").change(function () {
         CalcPag(persone);
     });
     /*COMPARA*/
@@ -109,40 +157,41 @@ $(function() {
         return comparison;
     }
     /*EDIT*/
-    $(document).on("click", ".edit", function() {
+    $(document).on("click", ".edit", function () {
         var dt = '{"nome": "' + $("#nomemod").val().toString() + '", "cognome": "' + $('#cognomemod').val().toString() + '", "anno_nascita": "' + $('#annomod').val().toString() + '", "regione": "' + $('#regionemod').val().toString() + '","provincia": "' + $('#provinciamod').val().toString() + '", "comune": "' + $('#comunemod').val().toString() + '", "anno": 2020}';
-            persone[c] = new Persona(new cartaIdentita([$('#nome').val().toString(), $('#cognome').val().toString(), [$('#residenza').val().toString(), $('#provincia').val().toString(), $('#regione').val().toString()], $('#indirizzo').val().toString(), new Date($('#data').val().toString()), $('#rilascio').val().toString()]), c);
-            $.ajax({
-                type: "POST",
-                headers: { "Access-Control-Allow-Origin": "*" },
-                data: dt,
-                /* Per poter aggiungere una entry bisogna prima autenticarsi. */
-                contentType: "application/json",
-                url: "https://late-frost-5190.getsandbox.com/anagrafiche/"+$(this).attr("id"),
-                dataType: "json",
-            });
+        persone[c] = new Persona(new cartaIdentita([$('#nome').val().toString(), $('#cognome').val().toString(), [$('#residenza').val().toString(), $('#provincia').val().toString(), $('#regione').val().toString()], $('#indirizzo').val().toString(), new Date($('#data').val().toString()), $('#rilascio').val().toString()]), c);
+        $.ajax({
+            type: "POST",
+            headers: { "Access-Control-Allow-Origin": "*" },
+            data: dt,
+            /* Per poter aggiungere una entry bisogna prima autenticarsi. */
+            contentType: "application/json",
+            url: "https://late-frost-5190.getsandbox.com/anagrafiche/" + $(this).attr("id"),
+            dataType: "json",
+        });
     });
     /*DELETE*/
-    $(document).on("click", ".delete", function() {
+    $(document).on("click", ".delete", function () {
         var selectedID = $(this).attr("id");
-        $(document).on("click", ".btnElimina", function(){
+        $(document).on("click", ".btnElimina", function () {
             $.ajax({
                 type: "DELETE",
                 /* Per poter rimuovere una entry bisogna prima autenticarsi con un'account di amministratore. */
                 contentType: "application/json",
                 url: "https://late-frost-5190.getsandbox.com/anagrafiche/remove/" + selectedID,
                 dataType: "json",
-                success: function(data){
+                success: function (data) {
                     CalcPag(persone);
                 }
             });
         })
     });
-    $(document).on("click", ".decesso", function(){
+    /*MORTE*/
+    $(document).on("click", ".btnConfirmDeath", function () {
 
     })
     /*ORDINA*/
-    $(document).on("click", ".order", function() {
+    $(document).on("click", ".order", function () {
         var temp = new Array();
         var f = $(this).attr("id");
         switch (f) {
@@ -289,19 +338,19 @@ $(function() {
         }
     });
     /*CLICK PRECEDENTE*/
-    $(document).on("click", "#previous", function() {
+    $(document).on("click", "#previous", function () {
         if (posizioneCorrente == 1) posizioneCorrente++;
         posizioneCorrente--;
         StampaTabella(posizioneCorrente, $("#shownumber").val());
     });
     /*CLICK SUCCESSIVO*/
-    $(document).on("click", "#next", function() {
+    $(document).on("click", "#next", function () {
         if (posizioneCorrente == numeropagine) posizioneCorrente--;
         posizioneCorrente++;
         StampaTabella(posizioneCorrente, $("#shownumber").val());
     });
     /*CLICK NUMERO PAGINA*/
-    $(document).on("click", ".numeri>.page-link", function() {
+    $(document).on("click", ".numeri>.page-link", function () {
         var testo = $(this).text();
         posizioneCorrente = testo;
         StampaTabella(testo, $("#shownumber").val());
@@ -319,8 +368,8 @@ $(function() {
     });
 
     // Play initial animations on page load.
-    $window.on('load', function() {
-        window.setTimeout(function() {
+    $window.on('load', function () {
+        window.setTimeout(function () {
             $body.removeClass('is-preload');
         }, 100);
     });
@@ -336,20 +385,20 @@ $(function() {
 
     // Title Bar.
     $(
-            '<div id="titleBar">' +
-            '<a href="#navPanel" class="toggle"></a>' +
-            '</div>'
-        )
+        '<div id="titleBar">' +
+        '<a href="#navPanel" class="toggle"></a>' +
+        '</div>'
+    )
         .appendTo($body);
 
     // Panel.
     $(
-            '<div id="navPanel">' +
-            '<nav>' +
-            $('#nav').navList() +
-            '</nav>' +
-            '</div>'
-        )
+        '<div id="navPanel">' +
+        '<nav>' +
+        $('#nav').navList() +
+        '</nav>' +
+        '</div>'
+    )
         .appendTo($body)
         .panel({
             delay: 500,

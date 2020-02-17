@@ -308,10 +308,12 @@
                         </div>
                         <div class="row pb-3">
                             <div class="col-4 text-left">
-                                <label>Regione</label>
+                                <label>Comune</label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Emilia-Romagna">
+                                <select class="comuni text-center rounded">
+                                    <option value="" hidden>Seleziona comune</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row pb-3">
@@ -319,15 +321,19 @@
                                 <label>Provincia</label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Rimini">
+                                <select class="province text-center rounded">
+                                    <option value="" hidden>Seleziona provincia</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row pb-3">
                             <div class="col-4 text-left">
-                                <label>Comune</label>
+                                <label>Regione</label>
                             </div>
                             <div class="col-8">
-                                <input type="text" class="form-control" placeholder="Santarcangelo">
+                                <select class="regioni text-center rounded">
+                                    <option value="" hidden>Seleziona regione</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row pb-3">
@@ -409,7 +415,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
                     <button type="button" class="btn btn-success inviaModifica">Modifica</button>
                 </div>
             </div>
@@ -458,8 +464,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Conferma</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                    <button type="button" class="btn btn-success btnCofirmDeath">Conferma</button>
                 </div>
             </div>
         </div>
