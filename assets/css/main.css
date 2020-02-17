@@ -899,7 +899,7 @@ ul.social li a.fa-twitter:hover {
     font-family: "Roboto", sans-serif;
     color: #5d5d5d;
     text-decoration: none;
-    padding: 0.6em 1.2em 0.6em 1.2em;
+    padding: .375rem .75rem;
     -moz-transition: background-color .25s ease-in-out;
     -webkit-transition: background-color .25s ease-in-out;
     -ms-transition: background-color .25s ease-in-out;
@@ -1960,4 +1960,10 @@ h1 span {
 .btnElimina:hover{
     background-color: #c02918;
     border-color: #c02918;
+}
+a.button{
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
 }
